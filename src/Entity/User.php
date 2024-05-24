@@ -106,7 +106,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
     }
-
+    
     /**
      * @param list<string> $roles
      */
