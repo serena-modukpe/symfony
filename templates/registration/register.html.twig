@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h1 class="card-title">Register</h1>
+
+                        {{ form_errors(registrationForm) }}
+
+                        {{ form_start(registrationForm) }}
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.plainPassword, {
+                                    'label': 'Password',
+                                    'attr': {'class': 'form-control'}
+                                }) }}
+                                <span class="password-toggle" onclick="togglePasswordVisibility(this)">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <Script>
+        function togglePasswordVisibility(element) {
+    var passwordField = document.querySelector('.password-field');
+    var icon = element.querySelector('i');
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+    </Script>
+    
+{% endblock %}
