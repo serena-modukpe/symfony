@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RolesHabilitations index{% endblock %}
+
+{% block body %}
+    <h1>RolesHabilitations index</h1>
+
+    <table class="table table-striped table-hover">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Id</th>
+                <th>Role</th>
+                <th>Habilitation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for roles_habilitation in roles_habilitations %}
+            <tr>
+                <td>{{ roles_habilitation.id }}</td>
+                <td>{{ roles_habilitation.role.libelle }}</td>
+                <td>{{ roles_habilitation.habilitation.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_roles_habilitations_show', {'id': roles_habilitation.id}) }}"class="btn btn-success">Voir</a>
+                    <a href="{{ path('app_roles_habilitations_edit', {'id': roles_habilitation.id}) }}"class="btn btn-secondary">Modifier</a>
+                    <a href="{{ path('app_roles_habilitations_delete', {'id': roles_habilitation.id}) }}"class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_roles_habilitations_new') }}"class="btn btn-light">Creer un role-habilitation</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habilitations{% endblock %}
+
+{% block body %}
+    <h1>Habilitations</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ habilitation.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ habilitation.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_habilitations_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_habilitations_edit', {'id': habilitation.id}) }}">Modifier</a>
+
+    {{ include('habilitations/_delete_form.html.twig') }}
+{% endblock %}

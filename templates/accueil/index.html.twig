@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 5em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Bienvenue sur le projet utilisateurs</h1>
+    {% if is_granted('ROLE_USER') %}
+    <nav class="navbar navbar-light bg-light p-4">
+        <form class="container-fluid justify-content-start">
+            <a href=" {{ path('app_article_index') }}"><button class="btn btn-outline-success me-2 m-3" type="button">Articles</button></a>
+            <a href=" {{ path('app_roles_index') }}"><button class="btn btn-sm btn-outline-secondary m-3" type="button">Roles</button></a>
+            <a href=" {{ path('app_habilitations_index') }} "><button class="btn btn-sm btn-outline-danger m-3" type="button">Habilitations</button></a>
+            <a href=" {{ path('app_roles_habilitations_index') }} "><button class="btn btn-sm btn-outline-dark m-3" type="button">Roles-Habilitations</button></a>
+
+            <a href=" {{ path('app_logout') }} "><span class="badge bg-info text-dark p-3">Se déconnecter</span></a>
+        </form>
+    </nav>
+        
+        
+        
+        
+        
+        
+
+
+    {% else %}
+        
+    vous n'êtes pas disposé à avoir à ceci
+
+    {% endif %}
+
+</div>
+{% endblock %}

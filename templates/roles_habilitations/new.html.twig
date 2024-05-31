@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvel article{% endblock %}
+{% block title %}New RolesHabilitations{% endblock %}
 
 {% block body %}
+   
     
-   <div class="container">
+
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-8">
-                <div class="card">
+                <div class="card mt-5">
                     <div class="card-body">
-                        <h5 class="card-title">Créer un article</h5>
+                        <h5 class="card-title">Créer un rôle</h5>
                         
                         <div class="form mb-2">
-                            {{ include('article/_form.html.twig') }}
+                            {{ include('roles_habilitations/_form.html.twig') }}
                         </div>
                         
-                        <a href="{{ path('app_article_index') }}" class="btn btn-primary">Retour à la liste</a>
+                        <a href="{{ path('app_roles_habilitations_index') }}"class="btn btn-secondary">Retour à la liste</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-  
 {% endblock %}

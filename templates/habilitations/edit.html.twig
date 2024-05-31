@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Habilitations{% endblock %}
+
+{% block body %}
+    <h1>Edit Habilitations</h1>
+
+    
+
+    
+
+    
+
+    <div class="container">
+    <div class="row justify-content-center">
+     <div class="card col-8 mt-5">
+            <div class="card-title p-2">
+                <h3>Modifier un rôle</h3>
+            </div>
+             <div class="card-body">
+                {{ include('habilitations/_form.html.twig', {'button_label': 'Update'}) }}
+
+                <a href="{{ path('app_habilitations_index') }}">Retour à la liste</a>
+
+                
+            </div>
+        </div>
+    </div>
+       
+    </div>
+{% endblock %}

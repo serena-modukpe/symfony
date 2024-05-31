@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Roles index{% endblock %}
+
+{% block body %}
+    <h1>Roles index</h1>
+
+    <table class="table table-striped table-hover">
+     <thead class="bg-dark text-white">
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_roles_show', {'id': role.id}) }}" class="btn btn-info text-white">Voir</a>
+                    <a href="{{ path('app_roles_edit', {'id': role.id}) }}"class="btn btn-success text-white">Modifier</a>
+                    <a href="{{ path('app_roles_delete', {'id': role.id}) }}"class="btn btn-danger">Supprimer</a>
+                
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune donnée enregistrée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+    <a href="{{ path('app_roles_new') }}" class="btn btn-primary">Creer un rôle</a>
+{% endblock %}

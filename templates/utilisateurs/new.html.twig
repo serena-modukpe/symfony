@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Utilisateurs{% endblock %}
+
+{% block body %}
+ <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Ajouter un rôle à un utilisateur</h5>
+                        
+                        <div class="form mb-2">
+                            {{ include('utilisateurs/_form.html.twig') }}
+                        </div>
+                        
+                        <a href="{{ path('app_utilisateurs_index') }}" class="btn btn-primary">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <a href="">back to list</a>
+{% endblock %}
