@@ -40,6 +40,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column]
+    private ?string $activationToken= null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,6 +133,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getActivationToken(): string{
+        return $this->activationToken;
+    }
+
+    public function setActivationToken(string $activationToken){
+        $this->activationToken = $activationToken;
     }
 
     /**

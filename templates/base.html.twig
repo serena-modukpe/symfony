@@ -11,10 +11,25 @@
     <body>
         <div class="container mt-4">
             {% block body %}{% endblock %}
-            {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
         </div>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <script type="module">
+                        import { showSuccessAlert, showErrorAlert } from '/build/app.js';
+                        document.addEventListener('DOMContentLoaded', function() {
+                            {% if label == 'success' %}
+                                showSuccessAlert('{{ message|e('js') }}');
+                            {% elseif label == 'error' %}
+                                showErrorAlert('{{ message|e('js') }}');
+                            {% endif %}
+                        });
+                    </script>
+                {% endfor %}
+            {% endfor %}
+        {% endblock %}
     </body>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-   
 </html>

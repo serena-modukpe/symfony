@@ -3,3 +3,6 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+app_activate:
+    path: '/activate/{token}'
+    controller: 'App\Controller\RegistrationController::activate'
