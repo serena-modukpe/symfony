@@ -6,6 +6,8 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,4 +80,45 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('download', name:'app_article_download',methods:['GET'] )]
+
+    public function download(ArticleRepository $articleRepository):Response
+    {
+        $articles = $articleRepository->findAll();
+        foreach ($articles as $article) {
+            if (!$article instanceof Article) {
+                throw new \Exception('Unexpected type found in articles array');
+        }
+
+        //configuration des options
+
+        $options= new Options();
+        $options->set('defaultFont', 'Arial');
+
+
+        //initialiser dompdf avec les options
+        $dompdf = new Dompdf($options);
+
+       
+        //Générer le contenu
+        $html= $this->renderView('article/download.html.twig',
+        ['articles'=>$articles]);
+
+        // Charger le HTML dans Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optionnel) Régler le format et l'orientation du papier
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Rendre le PDF
+        $dompdf->render();
+
+        // Obtenir le contenu du PDF
+        $pdfOutput = $dompdf->output();
+
+        return new Response($pdfOutput,200, [ 'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'attachment; filename="articles.pdf"',]);
+    }
+}
 }

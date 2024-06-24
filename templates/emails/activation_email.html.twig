@@ -1,11 +1,9 @@
 {# templates/emails/activation_email.html.twig #}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Activation de votre compte</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
     <h1>Bonjour {{ user.nom }}</h1>
 
     <p>Merci de vous être inscrit sur notre site. Pour activer votre compte, veuillez cliquer sur le lien suivant :</p>
@@ -21,5 +19,4 @@
 
     <p>Merci,</p>
     <p>L'équipe</p>
-</body>
-</html>
+{% endblock %}

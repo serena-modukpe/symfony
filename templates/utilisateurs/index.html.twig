@@ -8,22 +8,24 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>User_id</th>
-                <th>Role</th>
-                <th>actions</th>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Rôle</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for utilisateur in utilisateurs %}
             <tr>
-                <td>{{ utilisateur.id }}</td>
-                <td>{{ utilisateur.userId }}</td>
-                <td>{{ utilisateur.role }}</td>
-                <td>
-                    <a href="{{ path('app_utilisateurs_show', {'id': utilisateur.id}) }}">show</a>
-                    <a href="{{ path('app_utilisateurs_edit', {'id': utilisateur.id}) }}">edit</a>
-                    <a href="{{ path('app_utilisateurs_delete', {'id': utilisateur.id}) }}">Supprimer</a>
+                    <td>{{ utilisateur.id }}</td>
+                    <td>{{ utilisateur.user.email }}</td>
+                    <td>{{ utilisateur.user.nom }}</td>
+                    <td>{{ utilisateur.role.libelle }}</td>
+                    <td>
+                    <a href="{{ path('app_utilisateurs_show', {'id': utilisateur.id}) }}"class="btn btn-info text-white">Voir</a>
+                    <a href="{{ path('app_utilisateurs_edit', {'id': utilisateur.id}) }}"class="btn btn-success text-white">Modifier</a>
+                    <a href="{{ path('app_utilisateurs_delete', {'id': utilisateur.id}) }}"class="btn btn-danger">Supprimer</a>
                 </td>
             </tr>
         {% else %}
@@ -34,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_utilisateurs_new') }}">Creer</a>
+    <a href="{{ path('app_utilisateurs_new') }}"class="btn btn-primary">Creer</a>
 {% endblock %}
